@@ -16,6 +16,10 @@ const LimitedStyleInheritance = () => (
         </MyAppText>
         <MyAppHeaderText>Text styled as a header</MyAppHeaderText>
       </View>
+      <Text style={{fontWeight: 'bold'}}>
+        I am bold
+        <Text style={{color: 'red'}}> and red</Text>  {/* bold + red */}
+      </Text>
     </SafeAreaView>
   </SafeAreaProvider>
 );
