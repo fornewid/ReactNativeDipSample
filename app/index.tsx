@@ -1,30 +1,28 @@
 import React from 'react';
-import { Image, StyleSheet } from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { StyleSheet, View } from 'react-native';
+
+const Flex = () => {
+  return (
+    <View
+      style={[
+        styles.container,
+        {
+          // Try setting `flexDirection` to `"row"`.
+          flexDirection: 'column',
+        },
+      ]}>
+      <View style={{flex: 1, backgroundColor: 'red'}} />
+      <View style={{flex: 2, backgroundColor: 'darkorange'}} />
+      <View style={{flex: 3, backgroundColor: 'green'}} />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  stretch: {
-    width: 50,
-    height: 200,
-    resizeMode: 'stretch',
+    padding: 20,
   },
 });
 
-const DisplayAnImageWithStyle = () => (
-  <SafeAreaProvider>
-    <SafeAreaView style={styles.container}>
-      <Image
-        style={styles.stretch}
-        source={{
-          uri: 'https://reactnative.dev/img/tiny_logo.png',
-        }}
-      />
-      <Image source={require('../assets/images/react-logo.png')} />
-    </SafeAreaView>
-  </SafeAreaProvider>
-);
-
-export default DisplayAnImageWithStyle;
+export default Flex;
