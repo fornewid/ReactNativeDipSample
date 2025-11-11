@@ -1,36 +1,37 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
-const BoldAndBeautiful = () => (
+const LimitedStyleInheritance = () => (
   <SafeAreaProvider>
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.baseText}>
-        I am bold
-        <Text style={styles.innerText}> and red</Text>
-      </Text>
-      <Text>
-        <Text>First part and </Text>
-        <Text>second part</Text>
-      </Text>
+    <SafeAreaView>
       <View>
-        <Text>First part and </Text>
-        <Text>second part</Text>
+        <Text>
+          Some text
+        </Text>
+      </View>
+      <View>
+        <MyAppText>
+          Text styled with the default font for the entire application
+        </MyAppText>
+        <MyAppHeaderText>Text styled as a header</MyAppHeaderText>
       </View>
     </SafeAreaView>
   </SafeAreaProvider>
 );
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  baseText: {
-    fontWeight: 'bold',
-  },
-  innerText: {
-    color: 'red',
-  },
-});
+const MyAppHeaderText = ({children}) => {
+  return (
+    <MyAppText>
+      <Text style={{fontSize: 20}}>{children}</Text>
+    </MyAppText>
+  );
+};
 
-export default BoldAndBeautiful;
+const MyAppText = ({children}) => {
+  return (
+    <Text style={{color: 'green', fontStyle: 'italic'}}>{children}</Text>
+  );
+};
+
+export default LimitedStyleInheritance;
