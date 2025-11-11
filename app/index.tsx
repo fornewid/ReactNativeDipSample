@@ -1,36 +1,17 @@
-import React, { useState } from 'react';
-import { Button, Text, View } from 'react-native';
+import React from 'react';
+import { Text, View } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
-type CatProps = {
-  name: string;
-};
-
-const Cat = (props: CatProps) => {
-  const [isHungry, setIsHungry] = useState(true);
-
+const ViewBoxesWithColorAndText = () => {
   return (
-    <View>
-      <Text>
-        I am {props.name}, and I am {isHungry ? 'hungry' : 'full'}!
-      </Text>
-      <Button
-        onPress={() => {
-          setIsHungry(false);
-        }}
-        disabled={!isHungry}
-        title={isHungry ? 'Give me some food, please!' : 'Thank you!'}
-      />
-    </View>
+    <SafeAreaProvider>
+      <SafeAreaView style={{flexDirection: 'row'}}>
+        <View style={{height: 100, backgroundColor: 'blue', flex: 0.2}} />
+        <View style={{height: 100, backgroundColor: 'red', flex: 0.4}} />
+        <Text>Hello World!</Text>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 };
 
-const Cafe = () => {
-  return (
-    <>
-      <Cat name="Munkustrap" />
-      <Cat name="Spot" />
-    </>
-  );
-};
-
-export default Cafe;
+export default ViewBoxesWithColorAndText;
