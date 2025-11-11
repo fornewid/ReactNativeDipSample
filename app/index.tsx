@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 const BoldAndBeautiful = () => (
@@ -9,6 +9,14 @@ const BoldAndBeautiful = () => (
         I am bold
         <Text style={styles.innerText}> and red</Text>
       </Text>
+      <Text>
+        <Text>First part and </Text>
+        <Text>second part</Text>
+      </Text>
+      <View>
+        <Text>First part and </Text>
+        <Text>second part</Text>
+      </View>
     </SafeAreaView>
   </SafeAreaProvider>
 );
