@@ -2,15 +2,15 @@ import type { PropsWithChildren } from 'react';
 import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-const FlexDirectionBasics = () => {
-  const [flexDirection, setflexDirection] = useState('column');
+const DirectionLayout = () => {
+  const [direction, setDirection] = useState('ltr');
 
   return (
     <PreviewLayout
-      label="flexDirection"
-      values={['column', 'row', 'column-reverse', 'row-reverse']}
-      selectedValue={flexDirection}
-      setSelectedValue={setflexDirection}>
+      label="direction"
+      selectedValue={direction}
+      values={['ltr', 'rtl']}
+      setSelectedValue={setDirection}>
       <View style={[styles.box, {backgroundColor: 'powderblue'}]} />
       <View style={[styles.box, {backgroundColor: 'skyblue'}]} />
       <View style={[styles.box, {backgroundColor: 'steelblue'}]} />
@@ -98,4 +98,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FlexDirectionBasics;
+export default DirectionLayout;
