@@ -1,10 +1,14 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
-const Cat = () => {
+type CatProps = {
+  name: string;
+};
+
+const Cat = (props: CatProps) => {
   return (
     <View>
-      <Text>I am also a cat!</Text>
+      <Text>Hello, I am {props.name}!</Text>
     </View>
   );
 };
@@ -12,10 +16,9 @@ const Cat = () => {
 const Cafe = () => {
   return (
     <View>
-      <Text>Welcome!</Text>
-      <Cat />
-      <Cat />
-      <Cat />
+      <Cat name="Maru" />
+      <Cat name="Jellylorum" />
+      <Cat name="Spot" />
     </View>
   );
 };
