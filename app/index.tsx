@@ -22,6 +22,7 @@ const DisplayAnImageWithStyle = () => (
           uri: 'https://reactnative.dev/img/tiny_logo.png',
         }}
       />
+      <Image source={require('../assets/images/react-logo.png')} />
     </SafeAreaView>
   </SafeAreaProvider>
 );
