@@ -2,24 +2,26 @@ import React from 'react';
 import { StyleSheet, TextInput } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
-const TextInputExample = () => {
-  const [text, onChangeText] = React.useState('Useless Text');
-  const [number, onChangeNumber] = React.useState('');
+const MultilineTextInputExample = () => {
+  const [value, onChangeText] = React.useState('Useless Multiline Placeholder');
 
+  // If you type something in the text box that is a color,
+  // the background will change to that color.
   return (
     <SafeAreaProvider>
-      <SafeAreaView>
+      <SafeAreaView
+        style={{
+          flex: 1,
+          backgroundColor: value.toLowerCase(),
+        }}>
         <TextInput
-          style={styles.input}
-          onChangeText={onChangeText}
-          value={text}
-        />
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeNumber}
-          value={number}
-          placeholder="useless placeholder"
-          keyboardType="numeric"
+          editable
+          multiline
+          numberOfLines={4}
+          maxLength={40}
+          onChangeText={text => onChangeText(text)}
+          value={value}
+          style={styles.textInput}
         />
       </SafeAreaView>
     </SafeAreaProvider>
@@ -27,12 +29,12 @@ const TextInputExample = () => {
 };
 
 const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
+  textInput: {
     padding: 10,
+    borderColor: '#000',
+    borderWidth: 1,
+    margin: 12,
   },
 });
 
-export default TextInputExample;
+export default MultilineTextInputExample;
