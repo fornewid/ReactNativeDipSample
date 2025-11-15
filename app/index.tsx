@@ -1,40 +1,61 @@
-import React from 'react';
-import { StyleSheet, TextInput } from 'react-native';
+import React, { useState } from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
-const MultilineTextInputExample = () => {
-  const [value, onChangeText] = React.useState('Useless Multiline Placeholder');
+const App = () => {
+  const [timesPressed, setTimesPressed] = useState(0);
 
-  // If you type something in the text box that is a color,
-  // the background will change to that color.
+  let textLog = '';
+  if (timesPressed > 1) {
+    textLog = timesPressed + 'x onPress';
+  } else if (timesPressed > 0) {
+    textLog = 'onPress';
+  }
+
   return (
     <SafeAreaProvider>
-      <SafeAreaView
-        style={{
-          flex: 1,
-          backgroundColor: value.toLowerCase(),
-        }}>
-        <TextInput
-          editable
-          multiline
-          numberOfLines={4}
-          maxLength={40}
-          onChangeText={text => onChangeText(text)}
-          value={value}
-          style={styles.textInput}
-        />
+      <SafeAreaView style={styles.container}>
+        <Pressable
+          onPress={() => {
+            setTimesPressed(current => current + 1);
+          }}
+          style={({pressed}) => [
+            {
+              backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white',
+            },
+            styles.wrapperCustom,
+          ]}>
+          {({pressed}) => (
+            <Text style={styles.text}>{pressed ? 'Pressed!' : 'Press Me'}</Text>
+          )}
+        </Pressable>
+        <View style={styles.logBox}>
+          <Text testID="pressable_press_console">{textLog}</Text>
+        </View>
       </SafeAreaView>
     </SafeAreaProvider>
   );
 };
 
 const styles = StyleSheet.create({
-  textInput: {
-    padding: 10,
-    borderColor: '#000',
-    borderWidth: 1,
-    margin: 12,
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  text: {
+    fontSize: 16,
+  },
+  wrapperCustom: {
+    borderRadius: 8,
+    padding: 6,
+  },
+  logBox: {
+    padding: 20,
+    margin: 10,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: '#f0f0f0',
+    backgroundColor: '#f9f9f9',
   },
 });
 
-export default MultilineTextInputExample;
+export default App;
