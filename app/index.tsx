@@ -1,45 +1,52 @@
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 
 const App = () => (
   <SafeAreaProvider>
-    <SafeAreaView style={page.container}>
-      <Text style={flattenStyle}>React Native</Text>
-      <Text>Flatten Style</Text>
-      <Text style={page.code}>{JSON.stringify(flattenStyle, null, 2)}</Text>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.box1}>
+        <Text style={styles.text}>1</Text>
+      </View>
+      <View style={[styles.box2, StyleSheet.absoluteFill]}>
+        <Text style={styles.text}>2</Text>
+      </View>
+      <View style={styles.box3}>
+        <Text style={styles.text}>3</Text>
+      </View>
     </SafeAreaView>
   </SafeAreaProvider>
 );
 
-const page = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 24,
-    alignItems: 'center',
+  },
+  box1: {
+    position: 'absolute',
+    top: 40,
+    left: 40,
+    width: 100,
+    height: 100,
+    backgroundColor: 'red',
+  },
+  box2: {
+    width: 100,
+    height: 100,
+    backgroundColor: 'blue',
+  },
+  box3: {
+    position: 'absolute',
+    top: 120,
+    left: 120,
+    width: 100,
+    height: 100,
+    backgroundColor: 'green',
   },
   text: {
-    color: '#000',
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
-  code: {
-    marginTop: 12,
-    padding: 12,
-    borderRadius: 8,
-    color: '#666',
-    backgroundColor: '#eaeaea',
+    color: '#FFF',
+    fontSize: 80,
   },
 });
-
-const typography = StyleSheet.create({
-  header: {
-    color: '#61dafb',
-    fontSize: 30,
-    marginBottom: 36,
-  },
-});
-
-const flattenStyle = StyleSheet.flatten([page.text, typography.header]);
 
 export default App;
